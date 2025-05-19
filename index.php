@@ -1,9 +1,16 @@
 <?php
     require 'header.php';
-    require 'oeuvres.php';
+    require 'connect.php';
 ?>
+
 <div id="liste-oeuvres">
-    <?php foreach($oeuvres as $oeuvre): ?>
+    <?php
+
+    /** @var PDO $mysqlClient */
+
+    $sqlQuery = "SELECT * FROM `oeuvres`";
+
+    foreach($mysqlClient->query($sqlQuery) as $oeuvre): ?>
         <article class="oeuvre">
             <a href="oeuvre.php?id=<?= $oeuvre['id'] ?>">
                 <img src="<?= $oeuvre['image'] ?>" alt="<?= $oeuvre['titre'] ?>">
