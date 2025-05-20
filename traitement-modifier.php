@@ -2,19 +2,7 @@
 require 'connect.php';
 
 $postDataUpdate = $_POST;
-$id = $postDataUpdate["id"];
-
-/** On valide les données reçues par le formulaire  */
-if (
-    !isset($postDataUpdate["id"])
-    || !isset($postDataUpdate["titre"])
-    || !isset($postDataUpdate["description"])
-    || !isset($postDataUpdate["image"])
-)
-{
-    echo 'Les champs sont obligatoires';
-    return;
-}
+$id = $postDataUpdate['id'];
 
 /** On utilise strip_tags pour empêcher l'utilisateur d'injecter du code JavaScript  */
 $titreUpdate = strip_tags($postDataUpdate["titre"]);
@@ -39,4 +27,4 @@ $updateOeuvre->execute([
     'id' => $id,
 ]);
 
-header('Location: index.php');
+header('Location: oeuvre.php?id='.$id);

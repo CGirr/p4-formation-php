@@ -15,7 +15,7 @@ $oeuvre = $oeuvreStatement->fetch();
 
 if(empty($oeuvre)) {
     header('Location: index.php');
-    }
+}
 ?>
 
     <form action="traitement-modifier.php" method="POST">
