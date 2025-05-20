@@ -4,8 +4,13 @@
 
     /** @var $mysqlClient */
 
+    /** Préparation de la requête SQL */
     $oeuvreStatement = $mysqlClient->prepare('SELECT titre, description, artiste, image FROM oeuvres WHERE id = ?');
+
+    /** Exécution de la requête SQL */
     $oeuvreStatement->execute([$_GET['id']]);
+
+    /** Récupération de l'œuvre */
     $oeuvre = $oeuvreStatement->fetch();
 
     if(empty($oeuvre)) {
