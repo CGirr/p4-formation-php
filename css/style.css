@@ -133,6 +133,20 @@ input[type="submit"] {
     padding: 7px;
 }
 
+.link-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.link-danger {
+    color: red;
+    margin-right: 5px;
+}
+
+.link-edit {
+    color: orange;
+    margin-left: 5px;
+}
 
 @media (max-width: 850px) {
     .oeuvre {

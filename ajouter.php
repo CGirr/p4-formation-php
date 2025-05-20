@@ -17,7 +17,6 @@
         <label for="description">Description</label>
         <textarea name="description" id="description"></textarea>
     </div>
-
     <input type="submit" value="Valider" name="submit">
 </form>
 

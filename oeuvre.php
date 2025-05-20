@@ -5,7 +5,7 @@
     /** @var $mysqlClient */
 
     /** Préparation de la requête SQL */
-    $oeuvreStatement = $mysqlClient->prepare('SELECT titre, description, artiste, image FROM oeuvres WHERE id = ?');
+    $oeuvreStatement = $mysqlClient->prepare('SELECT id, titre, description, artiste, image FROM oeuvres WHERE id = ?');
 
     /** Exécution de la requête SQL */
     $oeuvreStatement->execute([$_GET['id']]);
@@ -21,6 +21,11 @@
 <article id="detail-oeuvre">
     <div id="img-oeuvre">
         <img src="<?= $oeuvre['image'] ?>" alt="<?= $oeuvre['titre'] ?>">
+        <div class="link-container">
+            <a href="supprimer.php?id=<?= $oeuvre['id'] ?>" class="link-danger">Supprimer l'oeuvre</a>
+            <div>|</div>
+            <a href="modifier.php?id=<?= $oeuvre['id'] ?>" class="link-edit">Modifier l'oeuvre</a>
+        </div>
     </div>
     <div id="contenu-oeuvre">
         <h1><?= $oeuvre['titre'] ?></h1>
