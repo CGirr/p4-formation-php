@@ -36,7 +36,7 @@ if(empty($oeuvre)) {
             <textarea name="description" id="description"><?php echo $oeuvre['description'] ?></textarea>
         </div>
         <div>
-            <label for="id">identifiant de l'oeuvre</label>
+            <label for="id"></label>
             <input type="hidden" id="id" name="id" value="<?php echo $_GET['id'] ?>">
         </div>
         <input type="submit" value="Valider" name="submit">
