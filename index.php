@@ -10,6 +10,7 @@
 
     $sqlQuery = "SELECT * FROM `oeuvres`";
 
+    /** Utilisation de PDO::query pour préparer et exécuter la requête SQL directement dans la boucle foreach */
     foreach($mysqlClient->query($sqlQuery) as $oeuvre): ?>
         <article class="oeuvre">
             <a href="oeuvre.php?id=<?= $oeuvre['id'] ?>">

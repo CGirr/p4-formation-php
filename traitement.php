@@ -1,7 +1,9 @@
 <?php
+require 'connect.php';
 
 $postData = $_POST;
 
+/** On valide les données reçues par le formulaire  */
 switch ($postData) {
     case empty($postData["titre"]):
         echo "Veuillez saisir un titre";
@@ -15,11 +17,30 @@ switch ($postData) {
     case !filter_var($postData["image"]):
         echo "Veuillez saisir une URL d'image valide";
         break;
-    default:
 }
 
-$titre = htmlspecialchars($postData["titre"]);
-$artiste = htmlspecialchars($postData["artiste"]);
-$description = htmlspecialchars($postData["description"]);
+/** On utilise strip_tags pour empêcher l'utilisateur d'injecter du code JavaScript  */
+$titre = strip_tags($postData["titre"]);
+$artiste = strip_tags($postData["artiste"]);
+$description = strip_tags($postData["description"]);
 $image = $postData["image"];
+
+/** On insère la nouvelle œuvre en base de données */
+/** Écriture de la requête */
+$sqlQuery = 'INSERT INTO oeuvres (titre, artiste, description, image) VALUES(:titre, :artiste, :description, :image)';
+
+/** Préparation */
+/** @var $mysqlClient */
+$insertOeuvre = $mysqlClient->prepare($sqlQuery);
+
+/** Exécution de la requête */
+$insertOeuvre->execute([
+    'titre' => $titre,
+    'artiste' => $artiste,
+    'description' => $description,
+    'image' => $image,
+]);
+
+header('Location: index.php');
+
 
